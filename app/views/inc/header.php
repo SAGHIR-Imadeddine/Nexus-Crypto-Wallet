@@ -6,7 +6,7 @@
     <title><?php echo SITENAME; ?></title>
 </head>
 
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/favicon.svg" type="image/svg+xml">
 
 
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">

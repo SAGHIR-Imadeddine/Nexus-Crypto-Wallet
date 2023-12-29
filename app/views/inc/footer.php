@@ -7,7 +7,7 @@
     <div class="footer-brand">
 
       <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" width="50" height="50" alt="Cryptex logo">
+        <img src="<?php echo URLROOT; ?>/image/logo.svg" width="50" height="50" alt="Cryptex logo">
         Cryptex
       </a>
 
