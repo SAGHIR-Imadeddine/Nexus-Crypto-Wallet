@@ -197,7 +197,7 @@
 <!-- 
 - custom js link
 -->
-<script src="./assets/js/script.js" defer></script>
+<script src="<?php echo URLROOT; ?>/js/script.js" defer></script>
 
 <!-- 
 - ionicon link
