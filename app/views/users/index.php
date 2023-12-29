@@ -286,7 +286,7 @@
                   <td class="table-data market-cap">$880,423,640,582</td>
 
                   <td class="table-data">
-                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                    <img src="<?php echo URLROOT; ?>/image/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
                   </td>
 
                   <td class="table-data">
@@ -397,7 +397,7 @@
                   <td class="table-data market-cap">$880,423,640,582</td>
 
                   <td class="table-data">
-                    <img src="./assets/images/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
+                    <img src="<?php echo URLROOT; ?>/image/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
                   </td>
 
                   <td class="table-data">
@@ -419,7 +419,7 @@
 
                   <td class="table-data">
                     <div class="wrapper">
-                      <img src="./assets/images/coin-5.svg" width="20" height="20" alt="Solana logo" class="img">
+                      <img src="<?php echo URLROOT; ?>/image/coin-5.svg" width="20" height="20" alt="Solana logo" class="img">
 
                       <h3>
                         <a href="#" class="coin-name">Solana <span class="span">SOL</span></a>
@@ -434,7 +434,7 @@
                   <td class="table-data market-cap">$880,423,640,582</td>
 
                   <td class="table-data">
-                    <img src="./assets/images/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
+                    <img src="<?php echo URLROOT; ?>/image/chart-1.svg" width="100" height="40" alt="profit chart" class="chart">
                   </td>
 
                   <td class="table-data">
@@ -456,7 +456,7 @@
 
                   <td class="table-data">
                     <div class="wrapper">
-                      <img src="./assets/images/coin-6.svg" width="20" height="20" alt="XRP logo" class="img">
+                      <img src="<?php echo URLROOT; ?>/image/coin-6.svg" width="20" height="20" alt="XRP logo" class="img">
 
                       <h3>
                         <a href="#" class="coin-name">XRP <span class="span">XRP</span></a>
@@ -471,7 +471,7 @@
                   <td class="table-data market-cap">$880,423,640,582</td>
 
                   <td class="table-data">
-                    <img src="./assets/images/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
+                    <img src="<?php echo URLROOT; ?>/image/chart-2.svg" width="100" height="40" alt="loss chart" class="chart">
                   </td>
 
                   <td class="table-data">
@@ -493,7 +493,7 @@
 
                   <td class="table-data">
                     <div class="wrapper">
-                      <img src="./assets/images/coin-7.svg" width="20" height="20" alt="Cardano logo" class="img">
+                      <img src="<?php echo URLROOT; ?>/image/coin-7.svg" width="20" height="20" alt="Cardano logo" class="img">
 
                       <h3>
                         <a href="#" class="coin-name">Cardano <span class="span">ADA</span></a>
@@ -530,7 +530,7 @@
 
                   <td class="table-data">
                     <div class="wrapper">
-                      <img src="./assets/images/coin-8.svg" width="20" height="20" alt="Avalanche logo" class="img">
+                      <img src="<?php echo URLROOT; ?>/image/coin-8.svg" width="20" height="20" alt="Avalanche logo" class="img">
 
                       <h3>
                         <a href="#" class="coin-name">Avalanche <span class="span">AVAX</span></a>
@@ -586,7 +586,7 @@
               <div class="instruction-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/instruction-1.png" width="96" height="96" loading="lazy" alt="Step 1"
+                  <img src="<?php echo URLROOT; ?>/image/instruction-1.png" width="96" height="96" loading="lazy" alt="Step 1"
                     class="img">
                 </figure>
 
@@ -605,7 +605,7 @@
               <div class="instruction-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/instruction-2.png" width="96" height="96" loading="lazy" alt="Step 2"
+                  <img src="<?php echo URLROOT; ?>/image/instruction-2.png" width="96" height="96" loading="lazy" alt="Step 2"
                     class="img">
                 </figure>
 
