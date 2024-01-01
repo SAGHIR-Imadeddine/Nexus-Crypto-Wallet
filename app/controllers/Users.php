@@ -1,8 +1,5 @@
 <?php
 class Users extends Controller{
-
-
-
     public function index(){
         $data = [
           'title' => 'SharePosts',
