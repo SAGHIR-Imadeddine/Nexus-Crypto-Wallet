@@ -25,7 +25,7 @@ class Crypto
         $response = curl_exec($curl);
         $data = json_decode($response, true);
         curl_close($curl);
-
+      
         return $data['data'] ?? [];
     }
 }

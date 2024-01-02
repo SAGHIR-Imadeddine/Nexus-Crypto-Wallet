@@ -14,17 +14,14 @@
         </li>
 
         <li class="navbar-item">
-          <a href="#" class="navbar-link" data-nav-link>Buy Crypto</a>
+        <a href="<?php echo URLROOT; ?>/transaction/Buy_sell_page" class="navbar-link" data-nav-link>Buy/sell Crypto</a>
         </li>
 
         <li class="navbar-item">
           <a href="<?php echo URLROOT; ?>/Cryptos/index" class="navbar-link" data-nav-link>Markets</a>
         </li>
 
-        <li class="navbar-item">
-          <a href="#" class="navbar-link" data-nav-link>Sell Crypto</a>
-        </li>
-
+       
         <li class="navbar-item">
           <a href="#" class="navbar-link" data-nav-link>Blog</a>
         </li>
