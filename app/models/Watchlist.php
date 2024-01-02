@@ -7,25 +7,29 @@ class Watchlist
         $this->conn = new Database();
     }
 
-    public function addToWatchlist($crypto_id)
+    public function addToWatchlist($user_id, $crypto_id)
     {
         try {
-            $existingEntry = $this->conn->query_data("SELECT * FROM watchlist WHERE user_id = 2 AND crypto_id = :crypto_id", [
+            $existingEntry = $this->conn->query_data("SELECT * FROM watchlist WHERE user_id = :user_id AND crypto_id = :crypto_id", [
+                'user_id' => $user_id,
                 'crypto_id' => $crypto_id
             ])->fetch();
+    
             if (!$existingEntry) {
-                $this->conn->query_data("INSERT INTO watchlist (user_id, crypto_id) VALUES (2, :crypto_id)", [
+                $this->conn->query_data("INSERT INTO watchlist (user_id, crypto_id) VALUES (:user_id, :crypto_id)", [
+                    'user_id' => $user_id,
                     'crypto_id' => $crypto_id
                 ]);
                 return true;
             }
+    
             return false;
         } catch (PDOException $e) {
-            header('Content-Type: application/json');
-            echo json_encode(['error' => 'Error: ' . $e->getMessage()]);
+            echo 'Error: ' . $e->getMessage();
             return false;
         }
     }
+    
     
 
     public function getCryptoData($crypto_id)

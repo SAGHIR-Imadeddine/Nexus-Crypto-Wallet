@@ -66,8 +66,10 @@
                             <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
                             <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
                             <div class="btns">
-                                <button id="addToWatchlistBtn" onclick="addToWatchlist(2,<?php echo $crypto['id']; ?>)">Add To Watchlist</button>
-                                <a href="#">Buy</a>
+                                <form id="addToWatchlistForm" method="POST" action="<?php echo URLROOT; ?>watchlists/list">
+                                    <input type="hidden" name="crypto_id" value="<?php echo $crypto['id']; ?>">
+                                    <button type="submit">Add To Watchlist</button>
+                                </form> <a href="#">Buy</a>
                             </div>
                         </div>
                     </div>
@@ -75,40 +77,6 @@
             <?php endforeach; ?>
         </div>
     </article>
-    <script>
-        function addToWatchlist(user_id, crypto_id) {
-            fetch('<?php echo URLROOT; ?>watchlists/list', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: crypto_id,
-                    }),
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text(); // Get the entire response text
-                })
-                .then(responseText => {
-                    console.log('Response Text:', responseText); // Log the response text
-                    return JSON.parse(responseText); // Parse the JSON
-                })
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('addToWatchlistBtn').innerText = 'Added Successfully';
-                        document.getElementById('addToWatchlistBtn').style.backgroundColor = 'green';
-                    } else {
-                        alert('This cryptocurrency is already in your watchlist.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    </script>
 </body>
 
 </html>

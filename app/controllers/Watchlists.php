@@ -15,13 +15,20 @@ class Watchlists extends Controller
     public function list()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $crypto_id = $_POST['id'] ?? null;  // Update to 'id' as per your JavaScript code
-            $success = $this->watchlistModel->addToWatchlist($crypto_id);
-            header('Content-Type: application/json');
-            echo json_encode(['success' => $success]);
-            exit;
+            $user_id = 2; 
+            $crypto_id = $_POST['crypto_id'] ?? null;  
+            $success = $this->watchlistModel->addToWatchlist($user_id, $crypto_id);
+            
+            if ($success) {
+                header('Location: ' . URLROOT . 'watchlists/list');
+                exit;
+            } else {
+                var_dump($success);
+                die("why");
+                header('Location: ' . URLROOT . 'error');
+                exit;
+            }
         }
     }
-    
     
 }
