@@ -65,7 +65,7 @@
                             <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
                             <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
                             <div class="btns">
-                                <a href="#">Add To Watchlist</a>
+                                <a href="<?php echo URLROOT; ?>watchlists/list">Add To Watchlist</a>
                                 <a href="#">Buy</a>
                             </div>
                         </div>
