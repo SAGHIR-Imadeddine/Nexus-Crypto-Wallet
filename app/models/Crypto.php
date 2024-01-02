@@ -4,11 +4,18 @@ class Crypto
     private $apiUrl = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
     private $apiKey = '15353843-1314-4878-86cd-089263e99d1d';
 
+    private $conn;
+
+    public function __construct()
+    {
+        $this->conn = new Database();
+    }
+
     public function fetchCryptoData()
     {
         $parameters = [
             'start' => '1',
-            'limit' => '100',
+            'limit' => '75',
             'convert' => 'USD'
         ];
 
@@ -27,5 +34,22 @@ class Crypto
         curl_close($curl);
 
         return $data['data'] ?? [];
+    }
+
+    public function updateWallet($cryptoId, $qte, $wallet_id){
+        $this->conn->query("SELECT * FROM crypto_wallet WHERE crypto_id = ? AND wallet_id = ?");
+        $this->conn->execute([$cryptoId,$wallet_id]);
+        $row = $this->conn->single(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $this->conn->query("UPDATE crypto_wallet SET qte = qte + ? WHERE crypto_id = ? AND wallet_id = ?");
+            $this->conn->execute([$qte, $cryptoId, $wallet_id]);
+        } else {
+            $this->conn->query("INSERT INTO crypto_wallet (wallet_id,crypto_id, qte) VALUES (?,?, ?)");
+            $this->conn->execute([$wallet_id, $cryptoId, $qte]);
+        }
+
+        $this->conn->query("UPDATE wallet SET balance = balance + ? WHERE id = ?");
+        $this->conn->execute([$qte,$wallet_id]);
     }
 }
