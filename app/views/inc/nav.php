@@ -18,7 +18,7 @@
         </li>
 
         <li class="navbar-item">
-          <a href="<?php echo URLROOT; ?>/Cryptos/index" class="navbar-link" data-nav-link>Markets</a>
+          <a href="<?php echo URLROOT; ?>Cryptos/index" class="navbar-link" data-nav-link>Markets</a>
         </li>
 
         <li class="navbar-item">
