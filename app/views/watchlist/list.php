@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/coins.png" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/market.css">
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body>
@@ -27,35 +29,8 @@
 
         </div>
     </aside>
-<!-- <button id="addToWatchlistBtn" onclick="addToWatchlist(<?php echo $user_id; ?>, <?php echo $crypto_id; ?>)">Add to Watchlist</button> -->
 
-<script>
-    function addToWatchlist(user_id, crypto_id) {
 
-        fetch('path-to-your-php-endpoint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                user_id: user_id,
-                crypto_id: crypto_id,
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('addToWatchlistBtn').innerText = 'Added Successfully';
-                document.getElementById('addToWatchlistBtn').style.backgroundColor = 'green';
-            } else {
-                alert('This cryptocurrency is already in your watchlist.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-</script>
 
 
 </body>

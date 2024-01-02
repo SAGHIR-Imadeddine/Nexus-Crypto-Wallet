@@ -2,24 +2,26 @@
 class Watchlists extends Controller
 {
     private $watchlistModel;
-    public function __construct() {
+    public function __construct()
+    {
         $this->watchlistModel = $this->model('Watchlist');
     }
+    // public function index()
+    // {
+    //     $listData = $this->watchlistModel->fetchWatchlistData();
+    //     $this->view('watchlist/list',$listData);
+    // }
 
     public function list()
     {
-        $watchlistData = $this->watchlistModel->AddCrypto();
-        $this->view('watchlist/list',$watchlistData);
-    }
-
-    public function addToWatchlistAction()
-    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user_id = $_POST['user_id'] ?? null;
-            $crypto_id = $_POST['crypto_id'] ?? null;
-            $success = $this->watchlistModel->addToWatchlist($user_id, $crypto_id);
+            $crypto_id = $_POST['id'] ?? null;  // Update to 'id' as per your JavaScript code
+            $success = $this->watchlistModel->addToWatchlist($crypto_id);
+            header('Content-Type: application/json');
             echo json_encode(['success' => $success]);
             exit;
         }
     }
+    
+    
 }
