@@ -36,6 +36,27 @@ class Crypto
         return $data['data'] ?? [];
     }
 
+    public function insertCoin($id,$name, $symbol, $slug, $max_supply){
+        $this->conn->query("INSERT INTO coins (id,name,symbol, slug, max_supply) VALUES (:id,:name, :symbol, :slug, :max_supply)");
+        $this->conn->bind(':id', $id);
+        $this->conn->bind(':name', $name);
+        $this->conn->bind(':symbol', $symbol);
+        $this->conn->bind(':slug', $slug);
+        $this->conn->bind(':max_supply', $max_supply);
+
+        $this->conn->execute();
+    }
+
+    public function getCoinByName($name)
+    {
+        $this->conn->query("SELECT * FROM coins WHERE name = :name");
+        $this->conn->bind(':name', $name);
+        $this->conn->execute();
+
+        return $this->conn->single(PDO::FETCH_ASSOC);
+    }
+
+
     public function updateWallet($cryptoId, $qte, $wallet_id){
         $this->conn->query("SELECT * FROM crypto_wallet WHERE crypto_id = ? AND wallet_id = ?");
         $this->conn->execute([$cryptoId,$wallet_id]);

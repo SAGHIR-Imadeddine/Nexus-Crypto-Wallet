@@ -2,6 +2,8 @@
 class Cryptos extends Controller
 {
     private $cryptoModel;
+    public $cryptoData;
+
     public function __construct() {
         $this->cryptoModel = $this->model('Crypto');
     }
@@ -9,7 +11,15 @@ class Cryptos extends Controller
     public function index()
     {
         $cryptoData = $this->cryptoModel->fetchCryptoData();
+        foreach ($cryptoData as $crypto) {
+            $existingCoin = $this->cryptoModel->getCoinByName($crypto['name']);
+
+            if (!$existingCoin) {
+                $this->cryptoModel->insertCoin($crypto['id'], $crypto['name'], $crypto['symbol'], $crypto['slug'], $crypto['max_supply']);
+            }
+        }
         $this->view('market/index',$cryptoData);
+    
     }
 
     public function buyCrypto(){

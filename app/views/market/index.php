@@ -74,6 +74,7 @@
             <?php endforeach; ?>
         </div>
     </article>
+
 </body>
 
 </html>
