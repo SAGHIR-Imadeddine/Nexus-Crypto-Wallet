@@ -51,11 +51,19 @@ class Watchlist
     }
     
 
-    public function removeCrypto()
+    public function removeCrypto($user_id, $crypto_id)
     {
+        try {
+            $this->conn->query_data("DELETE FROM watchlist WHERE user_id = :user_id AND crypto_id = :crypto_id", [
+                'user_id' => $user_id,
+                'crypto_id' => $crypto_id
+            ]);
+
+            return true;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+            return false;
+        }
     }
 
-    public function editList()
-    {
-    }
 }

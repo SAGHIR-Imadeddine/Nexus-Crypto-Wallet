@@ -35,4 +35,29 @@ class Watchlists extends Controller
             }
         }
     }
+
+    public function removeCrypto()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $user_id = 2;
+            $crypto_id = $_GET['crypto_id'] ?? null;
+            $success = $this->watchlistModel->removeCrypto($user_id, $crypto_id);
+
+            if ($success) {
+                header('Location: ' . URLROOT . 'watchlists/index');
+                // echo '<script>';
+                // echo 'alert("This cryptocurrency is removed successfully.");';
+                // echo 'window.location.href="' . URLROOT . 'watchlists/index";';
+                // echo '</script>';
+
+                exit;
+            } else {
+                echo '<script>';
+                echo 'alert("Error removing cryptocurrency from watchlist.");';
+                echo 'window.location.href="' . URLROOT . 'watchlists/index";';
+                echo '</script>';
+                exit;
+            }
+        }
+    }
 }

@@ -12,10 +12,10 @@
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/favicon.svg" type="image/svg+xml">
-<link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -80,7 +80,12 @@
                                     <td class="table-data"><?= number_format($crypto['circulating_supply'], 2) ?></td>
                                     <td class="table-data"><?= number_format($crypto['total_supply'], 2) ?></td>
                                     <td class="table-data">
-                                        <button class="btn btn-outline">Remove</button>
+                                        <form method="get" action="<?php echo URLROOT; ?>watchlists/removeCrypto">
+                                            <input type="hidden" name="user_id" value="2">
+                                            <input type="hidden" name="crypto_id" value="<?= $crypto['id'] ?>">
+                                            <button type="submit" class="btn btn-outline">Remove</button>
+                                        </form>
+                                        <!-- <button class="btn btn-outline">Remove</button> -->
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
