@@ -68,8 +68,15 @@
                             <div class="btns">
                                 <form id="addToWatchlistForm" method="POST" action="<?php echo URLROOT; ?>watchlists/list">
                                     <input type="hidden" name="crypto_id" value="<?php echo $crypto['id']; ?>">
-                                    <button type="submit">Add To Watchlist</button>
-                                </form> 
+                                    <button style=" background-color: #fafafa70;
+                                                    padding: 7px 12px;
+                                                    text-decoration: none;
+                                                    border-radius: 5px;
+                                                    letter-spacing: 1px;
+                                                    color: #fafafa;
+                                                    font-weight: 500;
+                                                    border : none;" type="submit">Add To Watchlist</button>
+                                </form>
                                 <a href="#">Buy</a>
                             </div>
                         </div>

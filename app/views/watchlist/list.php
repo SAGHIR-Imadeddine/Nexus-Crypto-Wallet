@@ -7,8 +7,15 @@
     <title>Market</title>
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/coins.png" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/market.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/watchlist.css">
+
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/favicon.svg" type="image/svg+xml">
+<link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -35,30 +42,53 @@
             <h2>My Watchlist</h2>
         </div>
 
-        <div style="overflow-x:auto;" class="cards">
-            <?php 
-            foreach ($data as $crypto) : ?>
-                <div class="card-container">
-                    <div class="card">
-                    <div class="front-content">
-                            <h2><?= $crypto['name'] ?></h2>
-                            <div class="data">
-                                <h4>Price : <?= number_format($crypto['quote']['USD']['price'], 2) ?></h4>
-                                <p>Market Cap : <?= number_format($crypto['quote']['USD']['market_cap'], 2) ?></p>
-                                <p>24h Volume : <?= number_format($crypto['quote']['USD']['volume_24h'], 2) ?></p>
-
-                            </div>
-                        </div>
-                        <div class="content">
-                        <p class="heading">Rank : <?= $crypto['cmc_rank'] ?></p>
-                            <p>Max Supply : <?= number_format($crypto['max_supply'], 2) ?></p>
-                            <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
-                            <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
-                        </div>
-                    </div>
+        <section class="section market" aria-label="market update" data-section>
+            <div class="container">
+                <div class="market-tab">
+                    <table class="market-table">
+                        <thead class="table-head">
+                            <tr class="table-row table-title">
+                                <th class="table-heading"></th>
+                                <th class="table-heading" scope="col">#</th>
+                                <th class="table-heading" scope="col">Name</th>
+                                <th class="table-heading" scope="col">Last Price</th>
+                                <th class="table-heading" scope="col">Market Cap</th>
+                                <th class="table-heading" scope="col">24h Volume</th>
+                                <th class="table-heading" scope="col">Rank</th>
+                                <th class="table-heading" scope="col">Max Supply</th>
+                                <th class="table-heading" scope="col">Circulating Supply</th>
+                                <th class="table-heading" scope="col">Total Supply</th>
+                                <th class="table-heading"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <?php foreach ($data as $crypto) : ?>
+                                <tr class="table-row">
+                                    <td class="table-data">
+                                        <button class="add-to-fav" aria-label="Add to favourite" data-add-to-fav>
+                                            <ion-icon name="star-outline" aria-hidden="true" class="icon-outline"></ion-icon>
+                                            <ion-icon name="star" aria-hidden="true" class="icon-fill"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <th class="table-data rank" scope="row"><?= $crypto['id'] ?></th>
+                                    <td class="table-data"><?= $crypto['name'] ?></td>
+                                    <td class="table-data"><?= number_format($crypto['quote']['USD']['price'], 2) ?></td>
+                                    <td class="table-data"><?= number_format($crypto['quote']['USD']['market_cap'], 2) ?></td>
+                                    <td class="table-data"><?= number_format($crypto['quote']['USD']['volume_24h'], 2) ?></td>
+                                    <td class="table-data"><?= $crypto['cmc_rank'] ?></td>
+                                    <td class="table-data"><?= number_format($crypto['max_supply'], 2) ?></td>
+                                    <td class="table-data"><?= number_format($crypto['circulating_supply'], 2) ?></td>
+                                    <td class="table-data"><?= number_format($crypto['total_supply'], 2) ?></td>
+                                    <td class="table-data">
+                                        <button class="btn btn-outline">Remove</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        </section>
     </article>
 </body>
 
