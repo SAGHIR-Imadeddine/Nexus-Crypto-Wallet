@@ -30,11 +30,26 @@ class Watchlist
         }
     }
     
-    
-
-    public function getCryptoData($crypto_id)
+    public function getUserWatchlist($user_id, $cryptoData)
     {
+        $sql = "SELECT * FROM watchlist WHERE user_id = :user_id";
+        $data = ['user_id' => $user_id];
+        $result = $this->conn->query_data($sql, $data)->fetchAll(PDO::FETCH_ASSOC);
+    
+        $watchlistData = [];
+        foreach ($result as $watchlistItem) {
+            $cryptoDataItem = array_filter($cryptoData, function ($crypto) use ($watchlistItem) {
+                return $crypto['id'] == $watchlistItem['crypto_id'];
+            });
+    
+            if (!empty($cryptoDataItem)) {
+                $watchlistData[] = reset($cryptoDataItem);
+            }
+        }
+    
+        return $watchlistData;
     }
+    
 
     public function removeCrypto()
     {

@@ -69,7 +69,8 @@
                                 <form id="addToWatchlistForm" method="POST" action="<?php echo URLROOT; ?>watchlists/list">
                                     <input type="hidden" name="crypto_id" value="<?php echo $crypto['id']; ?>">
                                     <button type="submit">Add To Watchlist</button>
-                                </form> <a href="#">Buy</a>
+                                </form> 
+                                <a href="#">Buy</a>
                             </div>
                         </div>
                     </div>

@@ -30,8 +30,36 @@
         </div>
     </aside>
 
+    <article>
+        <div class="header">
+            <h2>My Watchlist</h2>
+        </div>
 
+        <div style="overflow-x:auto;" class="cards">
+            <?php 
+            foreach ($data as $crypto) : ?>
+                <div class="card-container">
+                    <div class="card">
+                    <div class="front-content">
+                            <h2><?= $crypto['name'] ?></h2>
+                            <div class="data">
+                                <h4>Price : <?= number_format($crypto['quote']['USD']['price'], 2) ?></h4>
+                                <p>Market Cap : <?= number_format($crypto['quote']['USD']['market_cap'], 2) ?></p>
+                                <p>24h Volume : <?= number_format($crypto['quote']['USD']['volume_24h'], 2) ?></p>
 
-
+                            </div>
+                        </div>
+                        <div class="content">
+                        <p class="heading">Rank : <?= $crypto['cmc_rank'] ?></p>
+                            <p>Max Supply : <?= number_format($crypto['max_supply'], 2) ?></p>
+                            <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
+                            <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </article>
 </body>
+
 </html>

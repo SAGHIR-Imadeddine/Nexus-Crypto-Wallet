@@ -47,10 +47,19 @@ class Crypto
         $this->conn->execute();
     }
 
-    public function getCoinByName($name)
+    // public function getCoinByName($name)
+    // {
+    //     $this->conn->query("SELECT * FROM coins WHERE name = :name");
+    //     $this->conn->bind(':name', $name);
+    //     $this->conn->execute();
+
+    //     return $this->conn->single(PDO::FETCH_ASSOC);
+    // }
+    
+    public function getCoinById($crypto_id)
     {
-        $this->conn->query("SELECT * FROM coins WHERE name = :name");
-        $this->conn->bind(':name', $name);
+        $this->conn->query("SELECT * FROM coins WHERE id = :crypto_id");
+        $this->conn->bind(':crypto_id', $crypto_id);
         $this->conn->execute();
 
         return $this->conn->single(PDO::FETCH_ASSOC);

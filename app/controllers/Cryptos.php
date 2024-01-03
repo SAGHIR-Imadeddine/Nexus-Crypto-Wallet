@@ -12,7 +12,7 @@ class Cryptos extends Controller
     {
         $cryptoData = $this->cryptoModel->fetchCryptoData();
         foreach ($cryptoData as $crypto) {
-            $existingCoin = $this->cryptoModel->getCoinByName($crypto['name']);
+            $existingCoin = $this->cryptoModel->getCoinById($crypto['id']);
 
             if (!$existingCoin) {
                 $this->cryptoModel->insertCoin($crypto['id'], $crypto['name'], $crypto['symbol'], $crypto['slug'], $crypto['max_supply']);
