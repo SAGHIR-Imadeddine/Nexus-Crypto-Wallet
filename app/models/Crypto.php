@@ -56,7 +56,23 @@ class Crypto
         return $this->conn->single(PDO::FETCH_ASSOC);
     }
 
+    public function addToWatchlist($id){
+        $this->conn->query("SELECT * FROM watchlist where crypto_id = :id AND user_id = :user");
+        $this->conn->bind(':id',$id);
+        $this->conn->bind(':user_id',$_SESSION['user_id']);
+        $this->conn->execute();
+        $row = $this->conn->single(PDO::FETCH_ASSOC);
 
+        if ($row) {
+            redirect('Pages/watchlist');
+        }else{
+            $this->conn->query("INSERT INTO watchlist (user_id,crypto_id) VALUES (:user_id,:id)");
+            $this->conn->bind(':id', $id);
+            $this->conn->bind(':user_id', $_SESSION['user_id']);
+            $this->conn->execute();
+        }
+    }
+    
     public function updateWallet($cryptoId, $qte, $wallet_id){
         $this->conn->query("SELECT * FROM crypto_wallet WHERE crypto_id = ? AND wallet_id = ?");
         $this->conn->execute([$cryptoId,$wallet_id]);

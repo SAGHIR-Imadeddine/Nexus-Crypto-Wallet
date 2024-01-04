@@ -10,6 +10,7 @@ class Cryptos extends Controller
 
     public function index()
     {
+        $_SESSION['user_id'] = 1;
         $cryptoData = $this->cryptoModel->fetchCryptoData();
         foreach ($cryptoData as $crypto) {
             $existingCoin = $this->cryptoModel->getCoinByName($crypto['name']);
@@ -30,5 +31,11 @@ class Cryptos extends Controller
         $this->cryptoModel->updateWallet($crypto_id, $qte, $wallet_id);
 
         redirect('Cryptos/index');
+    }
+
+    public function addToWatchlist($id){
+        $this->cryptoModel->addToWatchlist($id);
+        redirect('Pages/watchlist');
+
     }
 }
