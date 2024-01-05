@@ -11,15 +11,17 @@ class Watchlists extends Controller
     }
     public function index()
     {
-        $user_id = 2;
+        $user_id = 1;
         $cryptoData = $this->cryptoModel->fetchCryptoData();
         $data = $this->watchlistModel->getUserWatchlist($user_id, $cryptoData);
         $this->view('watchlist/list', $data);
     }
     public function list()
     {
+        // var_dump($_POST);
+        // die();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user_id = 2;
+            $user_id = 1;
             $crypto_id = $_POST['crypto_id'] ?? null;
             $success = $this->watchlistModel->addToWatchlist($user_id, $crypto_id);
 
@@ -39,7 +41,7 @@ class Watchlists extends Controller
     public function removeCrypto()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $user_id = 2;
+            $user_id = 1;
             $crypto_id = $_GET['crypto_id'] ?? null;
             $success = $this->watchlistModel->removeCrypto($user_id, $crypto_id);
 

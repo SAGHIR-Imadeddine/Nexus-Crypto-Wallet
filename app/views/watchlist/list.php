@@ -28,6 +28,7 @@
         <nav>
             <a href="#"><i class="fa-solid fa-house"></i> Home</a>
             <a href="<?php echo URLROOT; ?>Cryptos/index"><i class="fa-solid fa-store"></i> Market</a>
+            <a href="<?php echo URLROOT; ?>transaction/Buy_sell_page"><i class="fa-solid fa-wallet"></i> BUY/SELL</a>
             <a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a>
             <a href="#"><i class="fa-solid fa-chart-simple"></i> Watchlist</a>
             <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
