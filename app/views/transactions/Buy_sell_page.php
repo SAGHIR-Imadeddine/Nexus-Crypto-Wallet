@@ -316,9 +316,10 @@
 
         selectedcointosell.addEventListener('change', function() {
             var selectedOption = this.options[this.selectedIndex];
-            console.log(selectedOption.value);
+            console.log(value);
 
             var value = selectedOption.value.split('/');
+            console.log(value);
             var cryptoRate = parseFloat(value[0]);
 
             $("#coin_amount").trigger('input');
@@ -337,7 +338,8 @@
                 $("#amout_dollar").val("INSERT THE COIN AMOUNT FIRST")
             }else{
 
-            $("#amout_dollar").val(amout_dollar);}
+            $("#amout_dollar").val(amout_dollar);
+        }
             $("#crypto_id2").val(value[2]);
         });
         /************* for send**************** */
