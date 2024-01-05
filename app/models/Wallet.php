@@ -56,5 +56,31 @@ class Wallet {
         $this->conn->bind(':qte', $data['cryptoamount']);
         $this->conn->execute();
     }
+
+
+
+
+
+    public function add_amount_to_wallet_receiver($data){
+        $this->conn->query("SELECT qte,if(qte>0,true,false) from wallet where user_id=:user_id AND crypto_id=:crypto_id");
+        $this->conn->bind(':user_id',1);
+        $this->conn->bind(':crypto_id', $data['cryptoid']);
+        $this->conn->execute();
+        $row=$this->conn->single();
+       
+
+        if($row){
+            $data['coin_amount']=$row->qte + $data['coin_amount'];
+        
+        $this->conn->query("UPDATE  wallet set qte=:qte where user_id =:user_id AND crypto_id=:crypto_id ");
+        }else{
+            $this->conn->query("INSERT INTO wallet (user_id,crypto_id,qte) VALUES (:user_id,:crypto_id,:qte)"); 
+        }
+
+        $this->conn->bind(':user_id', $data['nexusid']);
+        $this->conn->bind(':crypto_id', $data['cryptoid']);
+        $this->conn->bind(':qte', $data['coin_amount']);
+        $this->conn->execute();
+    }
     }
 

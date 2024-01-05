@@ -52,23 +52,26 @@ public function add_transac()
     
  }
 public function send_transac(){
-    
-    $coin=$this->wallet->check_Qte($_POST['cryptoid']);
-    $quantite=$coin->qte;
-  
+
+    // $coin=$this->wallet->check_Qte($_POST['cryptoid']);
+    // $quantite=$coin->qte;
+   
     if(!is_numeric($_POST['email'])){
      $receiver=$this->user->check_email_or_nexusID($_POST['email']);
      $_POST['email']=$receiver->id;
     }
-
     $data = [
         'cryptoid' => $_POST['cryptoid'],
         'coin_amount' => $_POST['coin_amount'],
         'nexusid' => $_POST['email'],
         'type_transac'=>'send'
     ];
+    $result = $this->wallet->wallet_sell($data);
+    if($result){
     $this->transaction->send_coin($data);
+    $this->wallet->add_amount_to_wallet_receiver($data); 
     
+    }
 }
 }
 ?>
