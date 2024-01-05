@@ -16,23 +16,20 @@ class Watchlists extends Controller
         $data = $this->watchlistModel->getUserWatchlist($user_id, $cryptoData);
         $this->view('watchlist/list', $data);
     }
-    public function list()
+    public function list($crypto_id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user_id = 1;
-            $crypto_id = $_POST['crypto_id'] ?? null;
-            $success = $this->watchlistModel->addToWatchlist($user_id, $crypto_id);
+        $user_id = 1;
+        $success = $this->watchlistModel->addToWatchlist($user_id, $crypto_id);
 
-            if ($success) {
-                header('Location: ' . URLROOT . 'watchlists/index');
-                exit;
-            } else {
-                echo '<script>';
-                echo 'alert("This cryptocurrency is already in your watchlist.");';
-                echo 'window.location.href="' . URLROOT . 'watchlists/index";';
-                echo '</script>';
-                exit;
-            }
+        if ($success) {
+            header('Location: ' . URLROOT . 'watchlists/index');
+            exit;
+        } else {
+            echo '<script>';
+            echo 'alert("This cryptocurrency is already in your watchlist.");';
+            echo 'window.location.href="' . URLROOT . 'watchlists/index";';
+            echo '</script>';
+            exit;
         }
     }
 

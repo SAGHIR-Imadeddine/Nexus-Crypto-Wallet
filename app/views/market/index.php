@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Market</title>
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/coins.png" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/market.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>public/css/market.css">
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
 
 </head>
@@ -38,13 +38,21 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <div class="notif">
-                    <button type="button"><i class="fa-regular fa-bell"></i></button>
-                    <div class="badge"></div>
-                    <div class="notif-content">
+                    <div class="icon" id="icon">
+                        <button type="button"><i class="fa-regular fa-bell"></i></button>
+                        <div class="badge" id="badge"></div>
+                    </div>
+                    <div class="notif-all" id="notifications">
                         <?php
-                            foreach ($data['notifications'] as $notif) {
-                                echo '<h4>'.$notif->content.'</h4>';
-                            }
+                        foreach ($data['notifications'] as $notif) {
+                            echo '<div class="notif-content">
+                                    <div class="notif-right">
+                                        <h5><i class="fa-solid fa-check" style="color: #fafafa;"></i></h5>
+                                        <p>' . $notif->content . '</p>
+                                    </div>
+                                    <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                                </div>';
+                        }
                         ?>
                     </div>
                 </div>
@@ -74,17 +82,7 @@
                             <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
                             <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
                             <div class="btns">
-                                <form id="addToWatchlistForm" method="POST" action="<?php echo URLROOT; ?>watchlists/list">
-                                    <input type="hidden" name="crypto_id" value="<?php echo $crypto['id']; ?>">
-                                    <button style=" background-color: #fafafa70;
-                                                    padding: 7px 12px;
-                                                    text-decoration: none;
-                                                    border-radius: 5px;
-                                                    letter-spacing: 1px;
-                                                    color: #fafafa;
-                                                    font-weight: 500;
-                                                    border : none;" type="submit">Add To Watchlist</button>
-                                </form>
+                                <a href="<?php echo URLROOT; ?>watchlists/list/<?php echo $crypto['id'];?>">Add To Watchlist</a>
                                 <a href="#">Buy</a>
                             </div>
                         </div>
@@ -93,6 +91,22 @@
             <?php endforeach; ?>
         </div>
     </article>
+    <script>
+        console.log('hi')
+        let container = document.getElementById('notifications');
+        let icon = document.getElementById("icon");
+        let badge = document.getElementById("badge");
+
+        icon.addEventListener('click', () => {
+            if (container.style.display === "none") {
+                container.style.display = "block"
+                badge.style.display = "none"
+            } else {
+                container.style.display = "none"
+            }
+        })
+    </script>
+
 </body>
 
 </html>

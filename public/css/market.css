@@ -123,6 +123,10 @@ article {
     position: relative;
 }
 
+.icon {
+    position: relative;
+}
+
 .notif button {
     background: transparent;
     font-size: 25px;
@@ -140,6 +144,8 @@ article {
     position: absolute;
     top: 2px;
     right: 0px;
+    display: none;
+        filter: drop-shadow(0px 0px 10px #4d81fc);
 }
 
 .profile button {
@@ -202,12 +208,13 @@ article {
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
 }
 
-.data{
+.data {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
 }
+
 .card .front-content p {
     /* font-size: 32px;
     font-weight: 700;
@@ -252,14 +259,16 @@ article {
 .card:hover .front-content p {
     opacity: 0;
 }
-.btns{
+
+.btns {
     width: 90%;
     display: flex;
     align-items: center;
     margin-top: 20px;
     justify-content: space-between;
 }
-.btns a{
+
+.btns a {
     background-color: #fafafa70;
     padding: 7px 12px;
     text-decoration: none;
@@ -268,6 +277,7 @@ article {
     color: #fafafa;
     font-weight: 500;
 }
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -326,4 +336,44 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]:focus::-moz-range-thumb {
     outline: 3px solid #3874ff;
     outline-offset: 0.125rem;
+}
+
+.notif-all {
+    position: absolute;
+    background-color: #292A2E;
+    z-index: 12;
+    width: 312px;
+    padding: 10px;
+    margin-top: 12px;
+    border-radius: 5px;
+    right: 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: none;
+}
+.notif-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+.notif-content:not(:last-child){
+    border-bottom: 2px solid #66666644;
+}
+.notif-right{
+    display: flex;
+    align-items: flex-start;
+    width: 93%;
+}
+.notif-right h5{
+    margin-right: 7px;
+    background-color: #2a9d8f;
+    font-size: 13px;
+    padding: 4px 6px;
+    border-radius: 200px;
+}
+.notif-right p{
+    line-height: 19px;
+}
+.notif-content a{
+    color: #888888;
 }

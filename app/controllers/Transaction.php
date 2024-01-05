@@ -1,10 +1,14 @@
 <?php
 class Transaction extends Controller{
+
+private $notifModel;
 private $cryptoModel;
 private $transaction;
 public function __construct() {
     $this->cryptoModel = $this->model('Crypto');
-     $this->transaction =$this->model('transact');
+    $this->transaction =$this->model('transact');
+    $this->notifModel = $this->model('Notification');
+
 }
 public function Buy_sell_page()
 {
@@ -25,8 +29,11 @@ public function add_transac()
         'cryptoamount' => $_POST['cryptoamount'],
         'type_transac'=>'buy'
     ];
+
+    $content = '';
     $this->transaction->buy_transac($data);
-    
+    $this->notifModel->addNotification($content);
+
   
     // $cryptoData = $this->cryptoModel->fetchCryptoData();
     // var_dump($cryptoData);

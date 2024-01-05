@@ -22,6 +22,5 @@ class Notification{
 
         $this->conn->execute();
         return $this->conn->resultSet(PDO::FETCH_ASSOC);
-
     }
 }
