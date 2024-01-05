@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/coins.png" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/market.css">
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -19,8 +20,9 @@
         <nav>
             <a href="#"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#"><i class="fa-solid fa-store"></i> Market</a>
+            <a href="<?php echo URLROOT; ?>/transaction/Buy_sell_page"><i class="fa-solid fa-store"></i> BUY/sell </a>
             <a href="#"><i class="fa-solid fa-wallet"></i> Wallet</a>
-            <a href="#"><i class="fa-solid fa-chart-simple"></i> Watchlist</a>
+            <a href="<?php echo URLROOT; ?>watchlists/index"><i class="fa-solid fa-chart-simple"></i> Watchlist</a>
             <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
         </nav>
         <div class="footer">
@@ -38,6 +40,13 @@
                 <div class="notif">
                     <button type="button"><i class="fa-regular fa-bell"></i></button>
                     <div class="badge"></div>
+                    <div class="notif-content">
+                        <?php
+                            foreach ($data['notifications'] as $notif) {
+                                echo '<h4>'.$notif->content.'</h4>';
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div class="profile">
                     <button type="button">
@@ -47,7 +56,7 @@
             </div>
         </div>
         <div style="overflow-x:auto;" class="cards">
-            <?php foreach ($data as $crypto) : ?>
+            <?php foreach ($data['cryptoData'] as $crypto) : ?>
                 <div class="card-container">
                     <div class="card">
                         <div class="front-content">
@@ -65,7 +74,17 @@
                             <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
                             <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
                             <div class="btns">
-                                <a href="#">Add To Watchlist</a>
+                                <form id="addToWatchlistForm" method="POST" action="<?php echo URLROOT; ?>watchlists/list">
+                                    <input type="hidden" name="crypto_id" value="<?php echo $crypto['id']; ?>">
+                                    <button style=" background-color: #fafafa70;
+                                                    padding: 7px 12px;
+                                                    text-decoration: none;
+                                                    border-radius: 5px;
+                                                    letter-spacing: 1px;
+                                                    color: #fafafa;
+                                                    font-weight: 500;
+                                                    border : none;" type="submit">Add To Watchlist</button>
+                                </form>
                                 <a href="#">Buy</a>
                             </div>
                         </div>
@@ -74,7 +93,6 @@
             <?php endforeach; ?>
         </div>
     </article>
-
 </body>
 
 </html>
