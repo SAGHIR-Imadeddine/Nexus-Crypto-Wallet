@@ -26,7 +26,7 @@ aside {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* align-items: center; */
+      align-items: center;  
 }
 
 .head {
@@ -36,6 +36,7 @@ aside {
     margin-bottom: 65px;
     padding-left: 20px;
 }
+
 
 aside h2 {
     color: var(--white);

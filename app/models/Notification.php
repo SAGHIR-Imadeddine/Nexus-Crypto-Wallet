@@ -9,7 +9,7 @@ class Notification{
     }
 
     public function addNotif($content){
-        $this->conn->query("INSERT INTO notification (user_id,content) VALUES (:user_id, :content)");
+        $this->conn->query("INSERT INTO notifications (user_id,content) VALUES (:user_id, :content)");
         $this->conn->bind(':user_id', $_SESSION['user_id']);
         $this->conn->bind(':content', $content);
 

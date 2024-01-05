@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Core{
     protected $currentController = 'Users';
     protected $currentMethod = 'index';
