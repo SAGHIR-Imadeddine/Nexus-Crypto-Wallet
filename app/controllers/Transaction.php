@@ -3,10 +3,12 @@ class Transaction extends Controller{
 private $cryptoModel;
 private $transaction;
 private $user;
+private $wallet;
 public function __construct() {
     $this->cryptoModel = $this->model('Crypto');
      $this->transaction =$this->model('transact');
      $this->user=$this->model('user');
+     $this->wallet=$this->model('wallet');
 }
 public function Buy_sell_page()
 {
@@ -16,10 +18,10 @@ public function Buy_sell_page()
     // die();
     $this->view('transactions/Buy_sell_page',$cryptoData);
 }
+/**************buy transac************* */
 public function add_transac()
 { 
-    // var_dump($_POST);
-    // die();
+    
     $data = [
         'cryptoid' => $_POST['cryptoid'],
         'coin' => $_POST['coin'],
@@ -28,16 +30,12 @@ public function add_transac()
         'type_transac'=>'buy'
     ];
     $this->transaction->buy_transac($data);
+    $this->wallet->add_to_wallet($data);
     
-  
-    // $cryptoData = $this->cryptoModel->fetchCryptoData();
-    // var_dump($cryptoData);
-    // die();
-    // $this->view('transactions/Buy_sell_page',$cryptoData);
 }
  public function sell_transac(){
-    //   var_dump($_POST);
-    // die();
+    
+   
     $data = [
         'cryptoid' => $_POST['cryptoid'],
         'cryptoamount' => $_POST['coin_amount'],
@@ -47,12 +45,14 @@ public function add_transac()
  }
 public function send_transac(){
     
+    $coin=$this->wallet->check_Qte($_POST['cryptoid']);
+    $quantite=$coin->qte;
+  
     if(!is_numeric($_POST['email'])){
      $receiver=$this->user->check_email_or_nexusID($_POST['email']);
      $_POST['email']=$receiver->id;
     }
-    // var_dump($_POST);
-    // die();
+
     $data = [
         'cryptoid' => $_POST['cryptoid'],
         'coin_amount' => $_POST['coin_amount'],
