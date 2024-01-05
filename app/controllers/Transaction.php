@@ -35,13 +35,21 @@ public function add_transac()
 }
  public function sell_transac(){
     
-   
     $data = [
         'cryptoid' => $_POST['cryptoid'],
         'cryptoamount' => $_POST['coin_amount'],
         'type_transac'=>'sell'
     ];
-    $this->transaction->sell_transac($data);
+    // check if i have the amount 
+    $result = $this->wallet->wallet_sell($data);
+    if($result){
+        $this->transaction->sell_transac($data);
+        $this->Buy_sell_page();
+
+    }else{
+        echo "You don't have this amount in your wallet";
+    }
+    
  }
 public function send_transac(){
     
