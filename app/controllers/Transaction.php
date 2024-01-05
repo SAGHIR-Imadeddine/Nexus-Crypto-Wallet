@@ -1,8 +1,8 @@
 <?php
 class Transaction extends Controller
 {
-
     private $notifModel;
+
     private $cryptoModel;
     private $transaction;
     private $user;
@@ -10,8 +10,9 @@ class Transaction extends Controller
     public function __construct()
     {
         $this->cryptoModel = $this->model('Crypto');
-        $this->notifModel = $this->model('Notification');
         $this->transaction = $this->model('transact');
+        $this->notifModel = $this->model('Notification');
+
         $this->user = $this->model('user');
         $this->wallet = $this->model('wallet');
     }
@@ -19,8 +20,6 @@ class Transaction extends Controller
     {
         $cryptoData = $this->cryptoModel->fetchCryptoData();
 
-        // var_dump($cryptoData);
-        // die();
         $this->view('transactions/Buy_sell_page', $cryptoData);
     }
     /**************buy transac************* */
@@ -34,23 +33,36 @@ class Transaction extends Controller
             'cryptoamount' => $_POST['cryptoamount'],
             'type_transac' => 'buy'
         ];
+        $cryptoName = $this->cryptoModel->getCoinById($data['cryptoid']);
+        $content = "You've bought " . $data['amount'] . " of " . $cryptoName->name;
 
-        $content = "You've bought ".$data['amount']." of ".$data['coin'];
         $this->transaction->buy_transac($data);
         $this->wallet->add_to_wallet($data);
         $this->notifModel->addNotif($content);
-
+        redirect('Cryptos/index');
+        echo '<script>document.getElementById("badge").style.display = "block"</script>';
     }
     public function sell_transac()
     {
-
 
         $data = [
             'cryptoid' => $_POST['cryptoid'],
             'cryptoamount' => $_POST['coin_amount'],
             'type_transac' => 'sell'
         ];
-        $this->transaction->sell_transac($data);
+        // check if i have the amount 
+        $result = $this->wallet->wallet_sell($data);
+        if ($result) {
+            $this->transaction->sell_transac($data);
+            $cryptoName = $this->cryptoModel->getCoinById($data['cryptoid']);
+
+            $content = "You've sold " . $data['cryptoamount'] . " of " . $cryptoName->name;
+            $this->notifModel->addNotif($content);
+
+            $this->Buy_sell_page();
+        } else {
+            echo "You don't have this amount in your wallet";
+        }
     }
     public function send_transac()
     {

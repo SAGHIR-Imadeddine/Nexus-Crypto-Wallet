@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Market</title>
     <link rel="shortcut icon" href="<?php echo URLROOT; ?>/image/coins.png" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>public/css/market.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/market.css">
     <script src="https://kit.fontawesome.com/6e1faf1eda.js" crossorigin="anonymous"></script>
 
 </head>
@@ -45,10 +45,14 @@
                     <div class="notif-all" id="notifications">
                         <?php
                         foreach ($data['notifications'] as $notif) {
+
                             echo '<div class="notif-content">
-                                    <div class="notif-right">
-                                        <h5><i class="fa-solid fa-check" style="color: #fafafa;"></i></h5>
-                                        <p>' . $notif->content . '</p>
+                                    <div class="notif-top">
+                                        <div class="notif-right">
+                                            <h5><i class="fa-solid fa-check" style="color: #fafafa;"></i></h5>
+                                            <p>' . $notif->content . '</p>
+                                        </div>
+                                        <span>' . $notif->created_at . '</span>
                                     </div>
                                     <a href="#"><i class="fa-solid fa-xmark"></i></a>
                                 </div>';
@@ -82,7 +86,7 @@
                             <p>Circulating Supply : <?= number_format($crypto['circulating_supply'], 2) ?></p>
                             <p>Total Supply : <?= number_format($crypto['total_supply'], 2) ?></p>
                             <div class="btns">
-                                <a href="<?php echo URLROOT; ?>watchlists/list/<?php echo $crypto['id'];?>">Add To Watchlist</a>
+                                <a href="<?php echo URLROOT; ?>watchlists/list/<?php echo $crypto['id']; ?>">Add To Watchlist</a>
                                 <a href="#">Buy</a>
                             </div>
                         </div>

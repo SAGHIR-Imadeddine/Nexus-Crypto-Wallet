@@ -93,7 +93,7 @@
                                     <td class="table-data"><?= number_format($crypto['total_supply'], 2) ?></td>
                                     <td class="table-data">
                                         <form method="get" action="<?php echo URLROOT; ?>watchlists/removeCrypto">
-                                            <input type="hidden" name="user_id" value="2">
+                                            <input type="hidden" name="user_id" value="1">
                                             <input type="hidden" name="crypto_id" value="<?= $crypto['id'] ?>">
                                             <button type="submit" class="btn btn-outline">Remove</button>
                                         </form>

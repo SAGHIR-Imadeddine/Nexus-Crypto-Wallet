@@ -378,3 +378,12 @@ input[type="range"]:focus::-moz-range-thumb {
 .notif-content a{
     color: #888888;
 }
+.notif-top{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.notif-top span{
+    margin-left: 30px;
+    color: #888888;
+}
