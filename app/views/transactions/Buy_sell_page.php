@@ -204,7 +204,7 @@
             <h1 class=" block text-center uppercase tracking-wide text-white  font-bold mb-2">Enter the dollar amount</h1>
             <div class="mx-auto w-fit">
                 <button class="mx-auto mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    SELL
+                    SEND
                 </button>
             </div>
             <input name="cryptoamount" class="hidden" id="crypto_amount">

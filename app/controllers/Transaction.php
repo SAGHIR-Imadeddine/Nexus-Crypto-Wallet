@@ -62,7 +62,7 @@ public function send_transac(){
     }
     $data = [
         'cryptoid' => $_POST['cryptoid'],
-        'coin_amount' => $_POST['coin_amount'],
+        'cryptoamount' => $_POST['coin_amount'],
         'nexusid' => $_POST['email'],
         'type_transac'=>'send'
     ];
@@ -70,7 +70,9 @@ public function send_transac(){
     if($result){
     $this->transaction->send_coin($data);
     $this->wallet->add_amount_to_wallet_receiver($data); 
-    
+    $this->Buy_sell_page();
+    }else{
+        echo "You don't have this amount in your wallet";
     }
 }
 }
