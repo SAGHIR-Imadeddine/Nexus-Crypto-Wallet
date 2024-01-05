@@ -312,13 +312,14 @@
 
 
         /****************FOR SELL***************** */
-        var selectedcoin = document.getElementById('coins');
+        var selectedcointosell = document.getElementById('coins');
 
-        selectedcoin.addEventListener('change', function() {
+        selectedcointosell.addEventListener('change', function() {
             var selectedOption = this.options[this.selectedIndex];
-            console.log(selectedOption.value);
+            console.log(value);
 
             var value = selectedOption.value.split('/');
+            console.log(value);
             var cryptoRate = parseFloat(value[0]);
 
             $("#coin_amount").trigger('input');
@@ -329,7 +330,7 @@
         $("#coin_amount").on('input', function() {
 
             var coin_amount = parseFloat($(this).val());
-            var selectedOption = selectElement.options[selectedcoin.selectedIndex];
+            var selectedOption = selectElement.options[selectedcointosell.selectedIndex];
             var value = selectedOption.value.split('/');
 
             var amout_dollar = coin_amount * value[0];
@@ -337,7 +338,8 @@
                 $("#amout_dollar").val("INSERT THE COIN AMOUNT FIRST")
             }else{
 
-            $("#amout_dollar").val(amout_dollar);}
+            $("#amout_dollar").val(amout_dollar);
+        }
             $("#crypto_id2").val(value[2]);
         });
         /************* for send**************** */

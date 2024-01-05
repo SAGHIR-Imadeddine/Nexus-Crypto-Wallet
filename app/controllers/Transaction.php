@@ -13,10 +13,9 @@ public function __construct() {
 public function Buy_sell_page()
 {
     $cryptoData = $this->cryptoModel->fetchCryptoData();
-   
-    // var_dump($cryptoData);
-    // die();
+  
     $this->view('transactions/Buy_sell_page',$cryptoData);
+    
 }
 /**************buy transac************* */
 public function add_transac()
@@ -31,6 +30,7 @@ public function add_transac()
     ];
     $this->transaction->buy_transac($data);
     $this->wallet->add_to_wallet($data);
+    $this->Buy_sell_page();
     
 }
  public function sell_transac(){

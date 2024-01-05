@@ -19,12 +19,17 @@ class Wallet {
         $this->conn->bind(':user_id',1);
         $this->conn->bind(':crypto_id', $data['cryptoid']);
         $this->conn->execute();
-        $row=$this->conn->rowCount();
+        $row=$this->conn->single();
+       
+
         if($row){
-        $this->conn->query("UPDATE  wallet (user_id,crypto_id,qte) VALUES (:user_id,:crypto_id,:qte)");
+            $data['cryptoamount']=$row->qte + $data['cryptoamount'];
+        
+        $this->conn->query("UPDATE  wallet set qte=:qte where user_id =:user_id AND crypto_id=:crypto_id ");
         }else{
             $this->conn->query("INSERT INTO wallet (user_id,crypto_id,qte) VALUES (:user_id,:crypto_id,:qte)"); 
         }
+
         $this->conn->bind(':user_id', 1);
         $this->conn->bind(':crypto_id', $data['cryptoid']);
         $this->conn->bind(':qte', $data['cryptoamount']);
