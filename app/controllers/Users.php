@@ -18,10 +18,10 @@ class Users extends Controller{
        
        if($user) {
         echo "<span class='text-yellow-500'>GOOD USER FOUNDED</span>";
-        return true;
+       
        }else{
-        echo "USER NOT FOUND";
-        return false;
+        echo "<span class='text-red-500'>USER NOT FOUND</span>";
+        
        }
       }
 }
