@@ -18,6 +18,8 @@ class Watchlists extends Controller
     }
     public function list()
     {
+        // var_dump($_POST);
+        // die();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user_id = 1;
             $crypto_id = $_POST['crypto_id'] ?? null;

@@ -1,5 +1,10 @@
 <?php
 class Users extends Controller{
+ public $user;
+  public function __construct()
+  {
+    $this->user=$this->model('user');
+  }
     public function index(){
         $data = [
           'title' => 'SharePosts',
@@ -7,6 +12,17 @@ class Users extends Controller{
         ];
        
         $this->view('users/index', $data);
+      }
+      public function check_email_or_nexusID(){
+       $user=$this->user->check_email_or_nexusID($_POST['input']);
+       
+       if($user) {
+        echo "<span class='text-yellow-500'>GOOD USER FOUNDED</span>";
+        return true;
+       }else{
+        echo "USER NOT FOUND";
+        return false;
+       }
       }
 }
 ?>
