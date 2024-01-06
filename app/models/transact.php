@@ -29,7 +29,7 @@ class transact {
         $this->conn->bind(':sender', 1);
         $this->conn->bind(':reciever',$data['nexusid'] );
         $this->conn->bind(':crypto_id', $data['cryptoid']);
-        $this->conn->bind(':amount', $data['coin_amount']);
+        $this->conn->bind(':amount', $data['cryptoamount']);
         $this->conn->bind(':transaction_type', $data['type_transac']);
       
         $this->conn->execute();
