@@ -13,15 +13,9 @@ public function __construct() {
 public function Buy_sell_page()
 {
     $cryptoData = $this->cryptoModel->fetchCryptoData();
-    $data=
-    [
-        'cryptos'=>$cryptoData,
-        'alertbuy' => '',
-        'alertsell'=>'',
-        'alertsend'=>'',
-    ];
+
   
-    $this->view('transactions/Buy_sell_page',$data);
+    $this->view('transactions/Buy_sell_page', $cryptoData);
     
 }
 /**************buy transac************* */
@@ -37,6 +31,7 @@ public function add_transac()
     ];
     $this->transaction->buy_transac($data);
     $this->wallet->add_to_wallet($data);
+    
     echo "<script>alert('TRANSACTION DONE');</script>";
     $this->Buy_sell_page();
     

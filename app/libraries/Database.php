@@ -19,6 +19,9 @@ class Database
         }
     }
 
+
+
+    
     public function exec($sql)
     {
         $this->stmt = $this->conn->exec($sql);
