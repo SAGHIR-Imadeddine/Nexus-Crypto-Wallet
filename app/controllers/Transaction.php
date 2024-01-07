@@ -13,8 +13,15 @@ public function __construct() {
 public function Buy_sell_page()
 {
     $cryptoData = $this->cryptoModel->fetchCryptoData();
+    $data=
+    [
+        'cryptos'=>$cryptoData,
+        'alertbuy' => '',
+        'alertsell'=>'',
+        'alertsend'=>'',
+    ];
   
-    $this->view('transactions/Buy_sell_page',$cryptoData);
+    $this->view('transactions/Buy_sell_page',$data);
     
 }
 /**************buy transac************* */
@@ -30,6 +37,7 @@ public function add_transac()
     ];
     $this->transaction->buy_transac($data);
     $this->wallet->add_to_wallet($data);
+    echo "<script>alert('TRANSACTION DONE');</script>";
     $this->Buy_sell_page();
     
 }
@@ -44,11 +52,12 @@ public function add_transac()
     $result = $this->wallet->wallet_sell($data);
     if($result){
         $this->transaction->sell_transac($data);
-        $this->Buy_sell_page();
-
+        
+        echo "<script>alert('TRANSACTION DONE');</script>";
     }else{
-        echo "You don't have this amount in your wallet";
+        echo "<script>alert('You don\'t have this amount in your wallet');</script>";
     }
+    $this->Buy_sell_page();
     
  }
 public function send_transac(){
@@ -70,10 +79,11 @@ public function send_transac(){
     if($result){
     $this->transaction->send_coin($data);
     $this->wallet->add_amount_to_wallet_receiver($data); 
+    echo "<script>alert('TRANSACTION DONE');</script>";
+}else{
+    echo "<script>alert('You don\'t have this amount in your wallet');</script>";
+}
     $this->Buy_sell_page();
-    }else{
-        echo "You don't have this amount in your wallet";
-    }
 }
 }
 ?>
