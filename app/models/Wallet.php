@@ -18,7 +18,8 @@ class Wallet {
     
     public function wallet_sell($data){
         $row=$this->check_Qte_Sell($data['cryptoid'],$data['cryptoamount']);
-        if($row->qte){
+      
+        if($row->result ){
         $data['cryptoamount']=$row->qte - $data['cryptoamount'];
 
         $this->conn->query("UPDATE  wallet set qte=:qte where user_id =:user_id AND crypto_id=:crypto_id ");

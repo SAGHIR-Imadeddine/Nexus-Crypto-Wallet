@@ -12,10 +12,12 @@ class Transaction extends Controller
         $this->cryptoModel = $this->model('Crypto');
         $this->transaction = $this->model('transact');
         $this->notifModel = $this->model('Notification');
+        $cryptoData = $this->cryptoModel->fetchCryptoData();
 
-        $this->user = $this->model('user');
-        $this->wallet = $this->model('wallet');
+
+        $this->view('transactions/Buy_sell_page', $cryptoData);
     }
+    /**************buy transac************* */
     public function Buy_sell_page()
     {
         $cryptoData = $this->cryptoModel->fetchCryptoData();
@@ -91,5 +93,20 @@ class Transaction extends Controller
         } else {
             echo "You don't have this amount in your wallet";
         }
+        $data = [
+            'cryptoid' => $_POST['cryptoid'],
+            'cryptoamount' => $_POST['coin_amount'],
+            'nexusid' => $_POST['email'],
+            'type_transac' => 'send'
+        ];
+        $result = $this->wallet->wallet_sell($data);
+        if ($result) {
+            $this->transaction->send_coin($data);
+            $this->wallet->add_amount_to_wallet_receiver($data);
+            echo "<script>alert('TRANSACTION DONE');</script>";
+        } else {
+            echo "<script>alert('You don\'t have this amount in your wallet');</script>";
+        }
+        $this->Buy_sell_page();
     }
 }
